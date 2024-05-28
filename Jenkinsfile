@@ -66,7 +66,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat 'docker run -d -p 8080:80 --name weatherdata-pipeline shriyyann/weatherdata-pipeline'
+                    bat 'docker run -d -p 8085:80 --name weatherdata-pipeline shriyyann/weatherdata-pipeline'
                 }
             }
         }
