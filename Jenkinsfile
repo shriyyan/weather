@@ -5,8 +5,8 @@ pipeline {
         DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
         NODEJS_HOME = 'C:\\Program Files\\nodejs'
-        DOCKER_HOME = 'C:\\Program Files\\Docker\\Docker\\resources\\bin' // Add Docker path
-        PATH = "${DOCKER_HOME};${NODEJS_HOME};C:\\Windows\\System32;C:\\Program Files\\Git\\cmd" // Include Docker path in PATH
+        DOCKER_HOME = 'C:\\Program Files\\Docker\\Docker\\resources\\bin'
+        PATH = "${DOCKER_HOME};${NODEJS_HOME};C:\\Windows\\System32;C:\\Program Files\\Git\\cmd"
     }
 
     stages {
@@ -44,7 +44,7 @@ pipeline {
                     """
                     writeFile file: 'Dockerfile', text: dockerfile
                     try {
-                        docker.build('shriyyann/weatherdata-pipeline')
+                        bat 'docker build -t shriyyann/weatherdata-pipeline .'
                     } finally {
                         bat 'del Dockerfile' // Cleanup Dockerfile
                     }
