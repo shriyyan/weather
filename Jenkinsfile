@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_USERNAME = 'shrishriyyan@gmail.com'
+        DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
         NODEJS_HOME = 'C:\\Program Files\\nodejs'
         DOCKER_HOME = 'C:\\Program Files\\Docker\\Docker\\resources\\bin' // Add Docker path
