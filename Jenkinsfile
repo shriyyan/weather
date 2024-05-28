@@ -35,6 +35,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    def dockerfile = """
+                        FROM node:14
+                        WORKDIR /app
+                        COPY . .
+                        RUN npm install
+                        CMD [ "npm", "start" ]
+                    """
+                    writeFile file: 'Dockerfile', text: dockerfile
                     docker.build('shriyyann/weatherdata-pipeline')
                 }
             }
