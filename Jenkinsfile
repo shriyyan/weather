@@ -6,7 +6,7 @@ pipeline {
         DOCKER_PASSWORD = 'shriyan9187'
         MAVEN_HOME = 'C:\\Users\\shris\\Downloads\\apache-maven-3.9.7-bin\\apache-maven-3.9.7' 
         JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21\\bin\\java.exe' // Adjust this path to where Java is installed
-        PATH = "${MAVEN_HOME}\\bin;${JAVA_HOME}\\bin;C:\\Windows\\System32"
+        PATH = "${MAVEN_HOME}\\bin;${JAVA_HOME};C:\\Windows\\System32"
     }
 
     stages {
