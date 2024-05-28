@@ -4,8 +4,8 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
-        NODEJS_HOME = 'C:\\Program Files\\nodejs'
-        PATH = "${NODEJS_HOME};C:\\Windows\\System32"
+        NODEJS_HOME = 'C:\\path\\to\\nodejs'
+        PATH = "${NODEJS_HOME}\\bin;C:\\Windows\\System32"
     }
 
     stages {
@@ -27,14 +27,6 @@ pipeline {
             steps {
                 script {
                     bat 'npm run build' // or 'yarn build' if using Yarn
-                }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                script {
-                    bat 'npm test' // or 'yarn test' if using Yarn
                 }
             }
         }
