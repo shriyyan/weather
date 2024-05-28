@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        DOCKER_HUB_CREDENTIALS = credentials('shriyyann', 'shriyan9187')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/your-repo.git'
+                git 'https://github.com/shriyyan/weather.git'
             }
         }
 
@@ -31,7 +31,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t your-docker-username/webdataapi .'
+                    sh 'docker build -t shriyyann/weatherdata-pipeline .'
                 }
             }
         }
@@ -39,8 +39,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKER_HUB_CREDENTIALS') {
-                        sh 'docker push your-docker-username/webdataapi'
+                    docker.withRegistry('https://index.docker.io/v1/', 'shriyyann', 'shriyan9187') {
+                        sh 'docker push shriyyann/weatherdata-pipeline'
                     }
                 }
             }
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -d -p 8080:8080 --name webdataapi --rm your-docker-username/webdataapi
+                    docker run -d -p 8080:8080 --name weatherdata-pipeline --rm shriyyann/weatherdata-pipeline
                     '''
                 }
             }
