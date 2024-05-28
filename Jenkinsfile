@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
+        PATH = "C:\\Windows\\System32"
     }
 
     stages {
