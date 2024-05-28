@@ -5,7 +5,8 @@ pipeline {
         DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
         NODEJS_HOME = 'C:\\Program Files\\nodejs'
-        PATH = "${NODEJS_HOME};C:\\Windows\\System32"
+        DOCKER_HOME = 'C:\\Program Files\\Docker\\Docker\\resources\\bin' // Add Docker path
+        PATH = "${DOCKER_HOME};${NODEJS_HOME};C:\\Windows\\System32" // Include Docker path in PATH
     }
 
     stages {
