@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -d -p 8080:8080 --name weatherdata-pipeline --rm shriyyann/weatherdata-pipeline
+                    docker run -d -p 8080:8080 --name weatherdata-pipeline shriyyann/weatherdata-pipeline
                     '''
                 }
             }
