@@ -13,6 +13,14 @@ pipeline {
             }
         }
 
+        stage('Verify Shell') {
+            steps {
+                script {
+                    bat 'echo C:\Windows\System32'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
