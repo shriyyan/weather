@@ -4,7 +4,8 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
-        PATH = "C:\\Windows\\System32"
+        MAVEN_HOME = 'C:\Users\shris\Downloads\apache-maven-3.9.7-bin\apache-maven-3.9.7' // Adjust this path to where Maven is installed
+        PATH = "${MAVEN_HOME}\\bin;C:\\Windows\\System32"
     }
 
     stages {
@@ -22,10 +23,10 @@ pipeline {
             }
         }
 
-        stage('Verify Shell') {
+        stage('Verify Maven') {
             steps {
                 script {
-                    bat 'echo Hello World'
+                    bat 'mvn -v'
                 }
             }
         }
