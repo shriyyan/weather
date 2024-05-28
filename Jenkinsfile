@@ -35,7 +35,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t shriyyann/weatherdata-pipeline .'
+                    docker.build('shriyyann/weatherdata-pipeline')
                 }
             }
         }
