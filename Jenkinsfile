@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('shriyyann', 'shriyan9187')
+        DOCKER_USERNAME = 'shriyyann'
+        DOCKER_PASSWORD = 'shriyan9187'
     }
 
     stages {
@@ -39,7 +40,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'shriyyann', 'shriyan9187') {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                         sh 'docker push shriyyann/weatherdata-pipeline'
                     }
                 }
@@ -57,4 +59,3 @@ pipeline {
         }
     }
 }
- 
