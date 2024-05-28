@@ -16,7 +16,7 @@ pipeline {
         stage('Verify Shell') {
             steps {
                 script {
-                    bat 'echo %PATH%'
+                    bat 'C:\\Windows\\System32\\cmd.exe /c echo C:\\Windows\\System32'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    bat 'mvn clean package'
+                    bat 'C:\\Windows\\System32\\cmd.exe /c mvn clean package'
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    bat 'mvn test'
+                    bat 'C:\\Windows\\System32\\cmd.exe /c mvn test'
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t shriyyann/weatherdata-pipeline .'
+                    bat 'C:\\Windows\\System32\\cmd.exe /c docker build -t shriyyann/weatherdata-pipeline .'
                 }
             }
         }
@@ -49,8 +49,8 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        bat 'docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%'
-                        bat 'docker push shriyyann/weatherdata-pipeline'
+                        bat 'C:\\Windows\\System32\\cmd.exe /c docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%'
+                        bat 'C:\\Windows\\System32\\cmd.exe /c docker push shriyyann/weatherdata-pipeline'
                     }
                 }
             }
@@ -59,9 +59,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat '''
-                    docker run -d -p 8080:8080 --name weatherdata-pipeline shriyyann/weatherdata-pipeline
-                    '''
+                    bat 'C:\\Windows\\System32\\cmd.exe /c docker run -d -p 8080:8080 --name weatherdata-pipeline shriyyann/weatherdata-pipeline'
                 }
             }
         }
