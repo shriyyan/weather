@@ -4,9 +4,8 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'shriyyann'
         DOCKER_PASSWORD = 'shriyan9187'
-        MAVEN_HOME = 'C:\\Users\\shris\\Downloads\\apache-maven-3.9.7-bin\\apache-maven-3.9.7' 
-        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21' 
-        PATH = "${MAVEN_HOME}\\bin;${JAVA_HOME}\\bin;C:\\Windows\\System32"
+        NODEJS_HOME = 'C:\\Program Files\\nodejs'
+        PATH = "${NODEJS_HOME};C:\\Windows\\System32"
     }
 
     stages {
@@ -16,28 +15,10 @@ pipeline {
             }
         }
 
-        stage('Verify Environment Variables') {
+        stage('Install Dependencies') {
             steps {
                 script {
-                    bat 'echo %JAVA_HOME%'
-                    bat 'echo %MAVEN_HOME%'
-                    bat 'echo %PATH%'
-                }
-            }
-        }
-
-        stage('Verify Java') {
-            steps {
-                script {
-                    bat 'java -version'
-                }
-            }
-        }
-
-        stage('Verify Maven') {
-            steps {
-                script {
-                    bat 'mvn -v'
+                    bat 'npm install' // or 'yarn install' if using Yarn
                 }
             }
         }
@@ -45,7 +26,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    bat 'mvn clean package'
+                    bat 'npm run build' // or 'yarn build' if using Yarn
                 }
             }
         }
@@ -53,7 +34,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    bat 'mvn test'
+                    bat 'npm test' // or 'yarn test' if using Yarn
                 }
             }
         }
@@ -80,7 +61,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat 'docker run -d -p 8080:8080 --name weatherdata-pipeline shriyyann/weatherdata-pipeline'
+                    bat 'docker run -d -p 8080:80 --name weatherdata-pipeline shriyyann/weatherdata-pipeline'
                 }
             }
         }
