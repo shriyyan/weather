@@ -35,7 +35,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t shriyyann/weatherdata-pipeline .'
+                    docker build -t shriyyann/weatherdata-pipeline -f "C:\Users\shris\OneDrive\Desktop\React project\weather-app\Dockerfile" .
+
                 }
             }
         }
