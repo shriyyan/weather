@@ -43,7 +43,11 @@ pipeline {
                         CMD [ "npm", "start" ]
                     """
                     writeFile file: 'Dockerfile', text: dockerfile
-                    docker.build('shriyyann/weatherdata-pipeline')
+                    try {
+                        docker.build('shriyyann/weatherdata-pipeline')
+                    } finally {
+                        bat 'del Dockerfile' // Cleanup Dockerfile
+                    }
                 }
             }
         }
